@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Table from "../components/Table";
-import { sortOnPrices, sortOnTickets, sortOnDepartureTime } from "../utils";
+import { sortOnPrices, sortOnSleeperPrices, sortOnTickets, sortOnSleeperTickets, sortOnDepartureTime } from "../utils";
 
 export default function Home() {
   const [data, setData] = useState([]);
@@ -19,7 +19,9 @@ export default function Home() {
   }, []);
 
   const sortedPriceData = sortOnPrices([...data]);
+  const sortedSleeperPriceData = sortOnSleeperPrices([...data]);
   const sortedTicketsData = sortOnTickets([...data]);
+  const sortedSleeperTicketsData = sortOnSleeperTickets([...data]);
   const sortedDepartureData = sortOnDepartureTime([...data]);
 
   return (
@@ -28,10 +30,14 @@ export default function Home() {
         <>
           <h1 className="text-[2rem] font-semibold w-fit mx-auto my-4">Raw Data(without sorted)</h1>
           <Table tableData={data} />
-          <h1 className="text-[2rem] font-semibold w-fit mx-auto my-4">Order by Price</h1>
+          <h1 className="text-[2rem] font-semibold w-fit mx-auto my-4">Order by AC Price</h1>
           <Table tableData={sortedPriceData} />
-          <h1 className="text-[2rem] font-semibold w-fit mx-auto my-4">Order by max Seats available</h1>
+          <h1 className="text-[2rem] font-semibold w-fit mx-auto my-4">Order by Sleeper Price</h1>
+          <Table tableData={sortedSleeperPriceData} />
+          <h1 className="text-[2rem] font-semibold w-fit mx-auto my-4">Order by max AC Seats available</h1>
           <Table tableData={sortedTicketsData} />
+          <h1 className="text-[2rem] font-semibold w-fit mx-auto my-4">Order by max Sleeper Seats available</h1>
+          <Table tableData={sortedSleeperTicketsData} />
           <h1 className="text-[2rem] font-semibold w-fit mx-auto my-4">Order by max Departure Time</h1>
           <Table tableData={sortedDepartureData} />
         </>
