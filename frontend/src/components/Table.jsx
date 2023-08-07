@@ -8,7 +8,10 @@ const Table = (props) => {
           <tr>
             <th>Train Name</th>
             <th>Train Number</th>
-            <th>Price</th>
+            <th>AC Price</th>
+            <th>SL Price</th>
+            <th>AC Tickets</th>
+            <th>SL Tickets</th>
             <th>departureTime</th>
           </tr>
         </thead>
@@ -24,7 +27,10 @@ const Table = (props) => {
               <tr key={index}>
                 <td>{item.trainName}</td>
                 <td>{item.trainNumber} </td>
-                <td>{`AC: ${item.price.AC}, SL:${item.price.sleeper}`} </td>
+                <td>{`Rs.${item.price.AC}`} </td>
+                <td>{`Rs.${item.price.sleeper}`} </td>
+                <td>{item.seatsAvailable.AC}</td>
+                <td>{item.seatsAvailable.sleeper}</td>
                 <td>{hours + ":" + minutes} </td>
               </tr>
             );
