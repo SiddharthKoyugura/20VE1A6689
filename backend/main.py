@@ -44,8 +44,11 @@ def get_all_trains():
             'Authorization': f'Bearer {AUTH_TOKEN_DATA["access_token"]}'
         }
         response = requests.get(f'{BASE_URL}/train/trains', headers=headers)
-        return response.json()
-    except Exception as e:
+        data = response.json()
+        if data[0].get('message'):
+            raise Exception("Token Expired")
+        return data
+    except:
         # Enters this block if auth token expires
         get_auth_token()
         return redirect(url_for('get_all_trains'))
